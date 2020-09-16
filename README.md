@@ -16,7 +16,7 @@ need to test.
 https://yandextank.readthedocs.io/en/latest/install.html#installation-from-pypi
 2. Set performance target host URL in `pytest-xxx.ini` config  
 3. Set your Overload token in `token.txt` file showing for tests performance statistics
-4. RUN: `pipenv run pytest tests -c tests/pytest-ci.ini`
+4. RUN: `pipenv run pytest tests -c tests/pytest-dev.ini`
 
 ## Docs
 https://yandextank.readthedocs.io/en/latest/index.html
