@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+export TERM=xterm-256color
+
+set +e
+
+GREEN_COLOR='\033[1;32;100m'
+COLOR_END='\033[0m'
+RED_COLOR='\033[1;31;100m'
+
+echo "Current dir is: $(pwd)"
+
+printf '%20srunning code style checker%20s\n' | tr ' ' -
+flake8 .
+TESTS_EXIT_STATUS=$?
+
+echo "Code Style checker exited with status code: ${TESTS_EXIT_STATUS}"
+if [ "$TESTS_EXIT_STATUS" -eq 0 ]; then
+  echo -e "${GREEN_COLOR}You are great programmer! Code style is correct!${COLOR_END}"
+else
+  echo -e "${RED_COLOR}Code style check is failed! Look for output and fix problems${COLOR_END}"
+fi
+exit "$TESTS_EXIT_STATUS"

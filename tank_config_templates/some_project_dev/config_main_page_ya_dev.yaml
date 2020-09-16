@@ -1,0 +1,22 @@
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  token_file: GENERATED
+  job_name: GENERATED
+phantom:
+  address: GENERATED
+  ssl: true
+  load_profile:
+    load_type: rps
+    schedule: line(1, 1, 25s)
+  ammofile: GENERATED
+  ammo_type: uri
+autostop:
+  autostop:
+    - time(500ms,4s) # Завершить тестирование ошибкой, если среднее время получения ответа > 500 ms в течение 4 секунд
+    - http(5xx,100%,3s) # Завершить тестирование ошибкой, если 500-ошибки составляют 100% в течение 3 секунд
+    - net(xx,2%,2s) # Завершить тестирование ошибкой, если сетевые ошибки превышают 2% в течение 2 секунд
+console:
+  enabled: true
+telegraf:
+  enabled: false
