@@ -21,9 +21,9 @@ class ConfigGenerator(BaseGenerator):
         with open(config_template_file_path, 'r') as file:
             file_data = file.read()
 
-        file_data = file_data.replace("address: GENERATED", f"address: {self.base_url}:443")
-        file_data = file_data.replace("ammofile: GENERATED", f"ammofile: {self.__generated_ammo_file_path.absolute()}")
-        file_data = file_data.replace("token_file: GENERATED", f"token_file: {Path('token.txt').absolute()}")
+        file_data = file_data.replace("address: GENERATED", f"address: {self.target_host_url}:443")
+        file_data = file_data.replace("ammofile: GENERATED", f"ammofile: {self.__generated_ammo_file_path.name}")
+        file_data = file_data.replace("token_file: GENERATED", "token_file: token.txt")
 
         prepared_config_file_name = config_template_file_path.name.replace('.yaml', '')
         file_data = file_data.replace("job_name: GENERATED", f"job_name: {prepared_config_file_name}")

@@ -1,17 +1,18 @@
 import logging
 import os
-import socket
+
+from core.helpers.target_host_data.target_host_data import TargetHostData
 
 
 def get_tank_config_templates_dir_name() -> str:
     return 'tank_config_templates'
 
 
-def get_base_url() -> str:
-    """Return URL like 'https://ctXXX.zoon.dev' or value of HOST_URL from ENV"""
-    base_url = os.environ["HOST_URL"]
-    logging.info(f"Got base URL from ENV: '{base_url}'")
-    return base_url
+def get_target_host_data() -> TargetHostData:
+    """Return TargetHostData object, witch contains info about URL and something else"""
+    full_target_url = os.environ.get("TARGET_HOST_URL", '')
+    logging.info(f"Got target host URL from ENV: '{full_target_url}'")
+    return TargetHostData(full_target_url)
 
 
 def get_test_name() -> str:
@@ -33,13 +34,8 @@ def test_name_with_path() -> str:
     return get_test_file_name().replace('/', '.') + '.' + get_test_name()
 
 
-def get_hostname() -> str:
-    """Return like '7952e4b4b4ee'"""
-    return socket.gethostname()
-
-
 def is_need_send_metrics() -> bool:
-    return os.environ.get('SEND_METRICS') == "True"
+    return os.environ.get('SEND_METRICS', '') == "True"
 
 
 # Data from GitLab CI

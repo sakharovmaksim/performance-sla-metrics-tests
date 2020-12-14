@@ -20,7 +20,7 @@ class AmmoGenerator(BaseGenerator):
         with open(ammo_template_file_path, 'r') as file:
             file_data = file.read()
 
-        file_data = file_data.replace("[Host: GENERATED]", f"[Host: {self.base_url}]")
+        file_data = file_data.replace("[Host: GENERATED]", f"[Host: {self.target_host_url}]")
 
         prepared_ammo_file_name = ammo_template_file_path.name.replace('.txt', '')
         generated_ammo_file_path = Path(f"{prepared_ammo_file_name}_generated.txt")

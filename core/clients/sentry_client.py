@@ -40,7 +40,7 @@ class SentryClient:
         with configure_scope() as scope:
             scope.set_level('info')
             scope.set_user({'email': env.get_gitlab_user_email()})
-            scope.set_tag('host_url', env.get_base_url())
+            scope.set_tag('host_url', env.get_target_host_data().full_url)
             scope.set_tag('git_branch_in_ci', env.get_git_branch_name())
             # Replace '/' to '.' needs for compatibility with Prometheus format
             scope.set_tag('test', env.test_name_with_path())

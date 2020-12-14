@@ -11,12 +11,11 @@ Requests and 'bullets' configurating in txt-files, which uses by tests runner. I
 need to test.
 
 ## Run performance tests!
-### In special Linux container or host with Yandex Tank, installed by PyPi
-1. Install Yandex Tank Application in docker container or host with Linux (Ubuntu) 
-https://yandextank.readthedocs.io/en/latest/install.html#installation-from-pypi
-2. Set performance target host URL in `pytest-xxx.ini` config  
-3. Set your Overload token in `token.txt` file showing for tests performance statistics
-4. RUN: `pipenv run pytest tests -c tests/pytest-dev.ini`
+### On your local machine
+1. Install Docker engine https://www.docker.com/get-started
+2. Set target host URL for performance testing in `pytest-xxx.ini` config  
+3. Set your Overload token in `token.txt` file showing for tests performance statistics (https://overload.yandex.net/login/?next=/)
+4. RUN: `pipenv run pytest tests -c tests/pytest-dev.ini` with `pytest-dev.ini` config
 
 ## Docs
 https://yandextank.readthedocs.io/en/latest/index.html

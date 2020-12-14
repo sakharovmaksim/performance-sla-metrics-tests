@@ -6,7 +6,7 @@ from core import env
 
 class BaseGenerator(ABC):
     def __init__(self):
-        self.base_url = env.get_base_url()
+        self.target_host_url = env.get_target_host_data().url_without_scheme
 
     @abstractmethod
     def generate(self) -> Path:

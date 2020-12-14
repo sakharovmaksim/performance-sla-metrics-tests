@@ -22,6 +22,7 @@ pytest-env = "*"
 pytest-html = "*"
 pytest-metadata = "*"
 sentry-sdk = "*"
+pyyaml = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"

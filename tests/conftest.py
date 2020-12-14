@@ -2,7 +2,7 @@ import pytest
 from _pytest.fixtures import FixtureRequest
 
 from core import env
-from core.helpers.overload_service_helper import OverloadServiceHelper
+from core.helpers.test_result_data import TestResultData
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -22,31 +22,26 @@ def run_test(request):
     # Test running here
     yield
 
-    overload_service = OverloadServiceHelper()
+    test_result_data = TestResultData()
 
     if __is_test_failed(request):
         if env.is_need_send_metrics():
-            send_test_metrics(request, overload_service)
+            send_test_metrics(request, test_result_data)
 
-    overload_service.log_overload_job_url()
+    test_result_data.log_overload_url()
+    test_result_data.delete_test_logs_dir()
     close_clients()
 
 
-def send_test_metrics(request: FixtureRequest, overload_service: OverloadServiceHelper):
-    pass
+def send_test_metrics(request: FixtureRequest, test_result_data: TestResultData):
     # TODO Go to Sentry Client and configurate it
-
-    # sentry_instance = SentryClient.get_instance()
-    # overload_job_url = overload_service.get_overload_job_url()
-    # if overload_job_url:
-    #     sentry_instance.set_overload_job_url(overload_job_url)
-    # sentry_instance.capture_exception(request.node.exception)
+    pass
 
 
 def close_clients():
-    pass
     # TODO Go to Sentry Client and configurate it
     # SentryClient.close_instance()
+    pass
 
 
 def __is_test_failed(request: FixtureRequest) -> bool:
